@@ -166,6 +166,18 @@ input[type='checkbox']:focus {
     padding: 8px 15px;
     font-size: 18px;
 }
-@media screen () {
-    
+@media  (max-width:440px) {
+    .formContainer {
+        padding: 20px;
+        margin: 50px 20px; 
+    }
+    .formContainer {
+        width: 90%;
+    }
+    .formInput {
+        width: 90%;
+    }
+    .unCompleted {
+        width: 90%;
+    }
 }
