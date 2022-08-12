@@ -1,10 +1,9 @@
 import React , {useEffect, useState}  from 'react';
 import {validate}  from './validate';
 import {notify} from './toast'
-
-
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import styles from  './Form.module.css';
 
 const Form = () => {
     const [data,setData] = useState({
@@ -50,43 +49,46 @@ const Form = () => {
     }
 
     return (
-        <form onSubmit={submitHandler}>
-            <h1>Sign Up</h1>
-            <div>
+       <div className={styles.container}>
+         <form onSubmit={submitHandler} className={styles.formContainer}>
+            <h1 className={styles.header}>Sign Up</h1>
+            <div className={styles.formFeild}>
                 <label>Name</label>
-                <input type="text" name='name' value={data.name} onChange={changeHandler} onFocus={touchHandler} />
+                <input type="text" name='name' value={data.name} onChange={changeHandler} onFocus={touchHandler} className={(errors.name && touch.name ? styles.unCompleted : styles.formInput)}/>
                 {errors.name && touch.name && <span>{errors.name}</span>}
             </div>
-            <div>
+            <div className={styles.formFeild}>
                 <label>Email</label>
-                <input type="text" name='email' value={data.email} onChange={changeHandler} onFocus={touchHandler}/>
+                <input type="text" name='email' value={data.email} onChange={changeHandler} onFocus={touchHandler} className={(errors.email && touch.email ? styles.unCompleted : styles.formInput)}/>
                 {errors.email && touch.email && <span>{errors.email}</span>}
 
             </div>
-            <div>
+            <div className={styles.formFeild}>
                 <label>Password</label>
-                <input type="password" name='password' value={data.password} onChange={changeHandler} onFocus={touchHandler} />
+                <input type="password" name='password' value={data.password} onChange={changeHandler} onFocus={touchHandler} className={(errors.password && touch.password ? styles.unCompleted : styles.formInput)}/>
                 {errors.password && touch.password && <span>{errors.password}</span>}
 
             </div>
-            <div>
+            <div className={styles.formFeild}>
                 <label>Confirm Password</label>
-                <input type="password" name='confirmPassword' value={data.confirmPassword} onChange={changeHandler} onFocus={touchHandler}/>
+                <input type="password" name='confirmPassword' value={data.confirmPassword} onChange={changeHandler} onFocus={touchHandler} className={(errors.confirmPassword && touch.confirmPassword ? styles.unCompleted : styles.formInput)}/>
                 {errors.confirmPassword && touch.confirmPassword && <span>{errors.confirmPassword}</span>}
 
             </div>
-            <div>
-                <label>I accept terms of privacy</label>
-                <input type="checkbox" name='isAccepted' value={data.isAccepted} onChange={changeHandler} onFocus={touchHandler}/>
-                {errors.isAccepted && touch.isAccepted && <span>{errors.isAccepted}</span>}
-
+            <div className={styles.checkboxContainer}>
+                <div className={styles.formFeild}>
+                    <label>I accept terms of privacy</label>
+                    <input type="checkbox" name='isAccepted' value={data.isAccepted} onChange={changeHandler} onFocus={touchHandler}/>
+                    {errors.isAccepted && touch.isAccepted && <span>{errors.isAccepted}</span>}
+                </div>
             </div>
-            <div>
+            <div className={styles.formButtons}>
                 <a href='/'>Login</a>
                 <button type='submit'>sign up</button>
             </div>
             <ToastContainer />
         </form>
+       </div>
     );
 };
 
