@@ -1,5 +1,11 @@
 import React , {useEffect, useState}  from 'react';
 import {validate}  from './validate';
+import {notify} from './toast'
+
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Form = () => {
     const [data,setData] = useState({
         name: '',
@@ -27,10 +33,12 @@ const Form = () => {
         setTouch({...touch,[event.target.name]:true})
     }
     const submitHandler=event => {
-        event.preventDefault()
+        event.preventDefault();
         if(!Object.keys(errors).length) {
-            console.log(data);
+            // console.log(data);
+            notify('you Sighned in successfully' , 'success')
         }else {
+            notify('invalid data' , 'error')
             setTouch({
                 name: true,
                 email:true,
@@ -40,7 +48,6 @@ const Form = () => {
             })
         }
     }
-
 
     return (
         <form onSubmit={submitHandler}>
@@ -75,9 +82,10 @@ const Form = () => {
 
             </div>
             <div>
-                <a href='#'>Login</a>
+                <a href='/'>Login</a>
                 <button type='submit'>sign up</button>
             </div>
+            <ToastContainer />
         </form>
     );
 };
