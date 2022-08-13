@@ -4,6 +4,7 @@ import {notify} from './toast'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from  './Form.module.css';
+import { Link } from 'react-router-dom';
 
 const Form = () => {
     const [data,setData] = useState({
@@ -59,7 +60,7 @@ const Form = () => {
             </div>
            
             <div className={styles.formButtons}>
-                <a href='/'>Sign up</a>
+                <Link to='/signup'>Sign up</Link>
                 <button type='submit'>Login</button>
             </div>
             <ToastContainer />
