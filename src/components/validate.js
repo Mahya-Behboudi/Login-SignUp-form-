@@ -1,11 +1,7 @@
-export const validate = data => {
+export const validate = (data,type) => {
     const erorrs = {};
     // validate name input
-    if(!data.name.trim()) {
-        erorrs.name ="name required";
-    }else {
-        delete erorrs.name;
-    }
+    
     // validate Email
     if(!data.email) {
         erorrs.email="Email required"
@@ -24,18 +20,27 @@ export const validate = data => {
         delete erorrs.password
     }
     // validate confirm password
-    if(!data.confirmPassword ) {
-        erorrs.confirmPassword= "confirm password";
-    }else if(data.confirmPassword !== data.password) {
-      erorrs.confirmPassword ="the password is not match";
-    }else {
-        delete erorrs.confirmPassword;
-    }
-    // validate chekbox
-    if(!data.isAccepted) {
-        erorrs.isAccepted = "Accept our regulations!"
-    }else {
-        delete erorrs.isAccepted
+   
+    if(type === "signup") {
+        if(!data.name.trim()) {
+            erorrs.name ="name required";
+        }else {
+            delete erorrs.name;
+        }
+        if(!data.confirmPassword ) {
+            erorrs.confirmPassword= "confirm password";
+        }else if(data.confirmPassword !== data.password) {
+          erorrs.confirmPassword ="the password is not match";
+        }else {
+            delete erorrs.confirmPassword;
+        }
+        // validate chekbox
+        if(!data.isAccepted) {
+            erorrs.isAccepted = "Accept our regulations!"
+        }else {
+            delete erorrs.isAccepted
+        }
     }
     return erorrs;
+
 }
